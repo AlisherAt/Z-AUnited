@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Choose Your Team</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script defer src="/static/app.js"></script>
+</head>
+<body>
+    <main style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-2xl);">
+        <div class="team-select-title">Choose Your Team</div>
+        <div class="team-select-desc">Select your favorite Premier League team to personalize your experience with team-specific themes and content</div>
+        <div class="team-select-grid">
+            <div class="team-select-card" data-theme="manunited">
+                <div class="team-initial" style="background:#d90429">MU</div>
+                <div class="team-name">Manchester United</div>
+            </div>
+            <div class="team-select-card" data-theme="chelsea">
+                <div class="team-initial" style="background:#1746a0">CFC</div>
+                <div class="team-name">Chelsea</div>
+            </div>
+            <div class="team-select-card" data-theme="liverpool">
+                <div class="team-initial" style="background:#c70039">LFC</div>
+                <div class="team-name">Liverpool</div>
+            </div>
+            <div class="team-select-card" data-theme="arsenal">
+                <div class="team-initial" style="background:#e63946">AFC</div>
+                <div class="team-name">Arsenal</div>
+            </div>
+            <div class="team-select-card" data-theme="mancity">
+                <div class="team-initial" style="background:#6ec6f1;color:#222;">MCFC</div>
+                <div class="team-name">Manchester City</div>
+            </div>
+            <div class="team-select-card" data-theme="tottenham">
+                <div class="team-initial" style="background:#1a1a2e">THFC</div>
+                <div class="team-name">Tottenham</div>
+            </div>
+            <div class="team-select-card" data-theme="newcastle">
+                <div class="team-initial" style="background:#22223b">NUFC</div>
+                <div class="team-name">Newcastle</div>
+            </div>
+            <div class="team-select-card" data-theme="astonvilla">
+                <div class="team-initial" style="background:#95d1cc;color:#222;">AVFC</div>
+                <div class="team-name">Aston Villa</div>
+            </div>
+        </div>
+        <button class="team-select-btn" id="continueBtn" disabled>Continue to Dashboard</button>
+    </main>
+    <script>
+      // Team selection logic
+      const cards = document.querySelectorAll('.team-select-card');
+      let selected = null;
+      cards.forEach(card => {
+        card.onclick = () => {
+          cards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selected = card.getAttribute('data-theme');
+          document.body.className = 'theme-' + selected;
+          document.getElementById('continueBtn').disabled = false;
+          document.getElementById('continueBtn').style.opacity = '1';
+          document.getElementById('continueBtn').style.transform = 'scale(1.05)';
+        };
+      });
+      document.getElementById('continueBtn').onclick = async () => {
+        if (selected) {
+          localStorage.setItem('favTheme', selected);
+          // Find team ID from theme name
+          const themeToTeamId = {
+            'manunited': 4,
+            'chelsea': 5,
+            'liverpool': 3,
+            'arsenal': 2,
+            'mancity': 1,
+            'tottenham': 6,
+            'newcastle': 7,
+            'astonvilla': 8
+          };
+          const teamId = themeToTeamId[selected];
+          const token = localStorage.getItem('token');
+          
+          if (token && teamId) {
+            try {
+              await fetchJSON('/api/profile/favorite', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ teamId })
+              });
+            } catch (err) {
+              console.error('Failed to save favorite team:', err);
+            }
+          }
+          window.location = '/feed';
+        }
+      };
+      // On load, apply theme if set
+      const saved = localStorage.getItem('favTheme');
+      if (saved) document.body.className = 'theme-' + saved;
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - League Table</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js"></script>
+    <script>window.addEventListener('DOMContentLoaded', function() { if(window.initTableLive) window.initTableLive(); });</script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league" class="active"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="page-header">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <h1>Premier League Table</h1>
+                <div>
+                    <!-- Premier League logo -->
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png" alt="Premier League Logo" style="height:48px; vertical-align:middle;" />
+                </div>
+            </div>
+            <p>Real-time standings and statistics for the 2024-25 season</p>
+        </div>
+        
+        <div id="live-indicator" style="display:none; margin-bottom: var(--spacing-lg); padding: var(--spacing-md); background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-secondary);">
+            <span class="live-badge">LIVE</span> <span style="color: var(--text-primary); font-weight: 600;">Match in progress</span>
+        </div>
+        
+        <div class="card" style="margin-bottom: var(--spacing-xl);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md);">
+                <button id="syncCalendarBtn" class="btn btn-primary"><span class="content-icon icon-calendar" style="margin-right: 6px;"></span>Sync to Calendar</button>
+                <div style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap;">
+                    <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                        <input type="checkbox" id="alertGoals" style="width: auto; margin: 0;"> Goal Alerts
+                    </label>
+                    <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                        <input type="checkbox" id="alertStart" style="width: auto; margin: 0;"> Match Start Alerts
+                    </label>
+                    <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                        <input type="checkbox" id="alertFT" style="width: auto; margin: 0;"> Full-Time Alerts
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('syncCalendarBtn');
+            btn.onclick = async function() {
+                const me = await fetch('/api/profile/me', {headers: {'Authorization': 'Bearer ' + (localStorage.getItem('token')||'')}}).then(r=>r.json());
+                if (!me.favoriteTeam) { alert('Set your favorite team in Account page first!'); return; }
+                const calUrl = `/api/calendar/${me.favoriteTeam.ID||me.favoriteTeam.id}`;
+                window.location = calUrl;
+            };
+            // Alerts: store preferences in localStorage
+            ['Goals','Start','FT'].forEach(type => {
+                const el = document.getElementById('alert'+type);
+                el.checked = localStorage.getItem('alert'+type)==='1';
+                el.onchange = () => localStorage.setItem('alert'+type, el.checked?'1':'0');
+            });
+        });
+        </script>
+        
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <table id="league-table">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Team</th>
+                        <th>GP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>F</th>
+                        <th>A</th>
+                        <th>GD</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr><td>1</td><td><strong>Arsenal</strong></td><td>25</td><td>17</td><td>5</td><td>3</td><td>49</td><td>17</td><td>+32</td><td><strong>56</strong></td></tr>
+                    <tr><td>2</td><td><strong>Manchester City</strong></td><td>25</td><td>15</td><td>5</td><td>5</td><td>51</td><td>24</td><td>+27</td><td><strong>50</strong></td></tr>
+                    <tr><td>3</td><td><strong>Aston Villa</strong></td><td>25</td><td>14</td><td>5</td><td>6</td><td>36</td><td>27</td><td>+9</td><td><strong>47</strong></td></tr>
+                    <tr><td>4</td><td><strong>Manchester United</strong></td><td>26</td><td>12</td><td>9</td><td>5</td><td>47</td><td>37</td><td>+10</td><td><strong>45</strong></td></tr>
+                    <tr><td>5</td><td><strong>Chelsea</strong></td><td>26</td><td>12</td><td>8</td><td>6</td><td>47</td><td>30</td><td>+17</td><td><strong>44</strong></td></tr>
+                    <tr><td>6</td><td><strong>Liverpool</strong></td><td>25</td><td>11</td><td>6</td><td>8</td><td>40</td><td>35</td><td>+5</td><td><strong>39</strong></td></tr>
+                    <tr><td>7</td><td>Brentford</td><td>25</td><td>12</td><td>3</td><td>10</td><td>39</td><td>34</td><td>+5</td><td>39</td></tr>
+                    <tr><td>8</td><td>Everton</td><td>26</td><td>10</td><td>7</td><td>9</td><td>29</td><td>30</td><td>-1</td><td>37</td></tr>
+                    <tr><td>9</td><td>AFC Bournemouth</td><td>26</td><td>9</td><td>10</td><td>7</td><td>43</td><td>45</td><td>-2</td><td>37</td></tr>
+                    <tr><td>10</td><td>Newcastle United</td><td>26</td><td>10</td><td>6</td><td>10</td><td>37</td><td>37</td><td>0</td><td>36</td></tr>
+                    <tr><td>11</td><td>Sunderland</td><td>25</td><td>9</td><td>9</td><td>7</td><td>27</td><td>29</td><td>-2</td><td>36</td></tr>
+                    <tr><td>12</td><td>Fulham</td><td>25</td><td>10</td><td>4</td><td>11</td><td>35</td><td>37</td><td>-2</td><td>34</td></tr>
+                    <tr><td>13</td><td>Crystal Palace</td><td>25</td><td>8</td><td>8</td><td>9</td><td>26</td><td>29</td><td>-3</td><td>32</td></tr>
+                    <tr><td>14</td><td>Brighton & Hove Albion</td><td>25</td><td>7</td><td>10</td><td>8</td><td>34</td><td>33</td><td>+1</td><td>31</td></tr>
+                    <tr><td>15</td><td>Leeds United</td><td>26</td><td>7</td><td>9</td><td>10</td><td>36</td><td>45</td><td>-9</td><td>30</td></tr>
+                    <tr><td>16</td><td>Tottenham Hotspur</td><td>26</td><td>7</td><td>8</td><td>11</td><td>36</td><td>37</td><td>-1</td><td>29</td></tr>
+                    <tr><td>17</td><td>Nottingham Forest</td><td>25</td><td>7</td><td>5</td><td>13</td><td>25</td><td>38</td><td>-13</td><td>26</td></tr>
+                    <tr><td>18</td><td>West Ham United</td><td>26</td><td>6</td><td>6</td><td>14</td><td>32</td><td>49</td><td>-17</td><td>24</td></tr>
+                    <tr><td>19</td><td>Burnley</td><td>25</td><td>3</td><td>6</td><td>16</td><td>25</td><td>49</td><td>-24</td><td>15</td></tr>
+                    <tr><td>20</td><td>Wolverhampton Wanderers</td><td>25</td><td>1</td><td>5</td><td>19</td><td>16</td><td>48</td><td>-32</td><td>8</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

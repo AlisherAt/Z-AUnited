@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Community</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community" class="active"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="fan-zone-header">
+            <h1><span class="content-icon nav-icon-community"></span>Fan Zone</h1>
+            <p>Join the conversation with fans worldwide - discuss tactics, transfers, predictions, and more</p>
+        </div>
+        
+        <div class="fan-zone-controls">
+            <input type="text" class="fan-zone-search" placeholder="Search discussions...">
+            <button class="fan-zone-new-thread">+ New Thread</button>
+        </div>
+        
+        <div class="fan-zone-categories">
+            <button class="cat active">All</button>
+            <button class="cat">Tactics</button>
+            <button class="cat">Transfers</button>
+            <button class="cat">Analysis</button>
+            <button class="cat">Predictions</button>
+            <button class="cat">Discussion</button>
+        </div>
+        
+        <div class="fan-zone-threads">
+            <div class="thread-card">
+                <span class="tag tactics">Tactics</span>
+                <div class="thread-title">Will Arsenal finally win the title this season?</div>
+                <div class="thread-meta">Started by <b>Gunner_Forever</b> • 2 minutes ago</div>
+                <div class="thread-stats"><span>342 replies</span> <span>5,821 views</span></div>
+            </div>
+            <div class="thread-card">
+                <span class="tag analysis">Analysis</span>
+                <div class="thread-title">Liverpool's midfield transformation - Best in the league?</div>
+                <div class="thread-meta">Started by <b>YNWA_2026</b> • 15 minutes ago</div>
+                <div class="thread-stats"><span>187 replies</span> <span>3,124 views</span></div>
+            </div>
+            <div class="thread-card">
+                <span class="tag predictions">Predictions</span>
+                <div class="thread-title">Man City's treble chances - Can they do it again?</div>
+                <div class="thread-meta">Started by <b>CitizenBlue</b> • 1 hour ago</div>
+                <div class="thread-stats"><span>256 replies</span> <span>4,387 views</span></div>
+            </div>
+            <div class="thread-card">
+                <span class="tag transfers">Transfers</span>
+                <div class="thread-title">Transfer Window: Who should Chelsea sign in summer?</div>
+                <div class="thread-meta">Started by <b>BlueArmy</b> • 3 hours ago</div>
+                <div class="thread-stats"><span>421 replies</span> <span>6,753 views</span></div>
+            </div>
+            <div class="thread-card">
+                <span class="tag discussion">Discussion</span>
+                <div class="thread-title">Newcastle's rise - Can they secure Champions League?</div>
+                <div class="thread-meta">Started by <b>ToonArmyfan</b> • 5 hours ago</div>
+                <div class="thread-stats"><span>198 replies</span> <span>2,941 views</span></div>
+            </div>
+        </div>
+        
+        <script>
+        // JS for search, filter, and new thread can be added here
+        document.querySelectorAll('.fan-zone-categories .cat').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.fan-zone-categories .cat').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        </script>
+    </div>
+</body>
+</html>

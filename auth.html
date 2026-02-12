@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z&A United - Welcome</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body class="auth-body">
+  <div class="auth-gradient-bg"></div>
+  <main class="auth-layout">
+    <section class="auth-hero">
+      <div class="auth-hero-badge">Premier League Companion</div>
+      <h1>Welcome to <span>Z&amp;A United</span></h1>
+      <p>Live scores, analytics, and a personalized fan experience for your favorite Premier League club.</p>
+      <ul class="auth-hero-list">
+        <li>Real-time standings and live match tracker</li>
+        <li>Smart analytics and historical insights</li>
+        <li>Community discussions with fellow fans</li>
+      </ul>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-tabs">
+        <button class="auth-tab auth-tab--active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="register">Register</button>
+      </div>
+
+      <div class="auth-panel-body">
+        <form id="loginForm" class="auth-form" data-tab-content="login">
+          <h2>Sign in to your account</h2>
+          <p class="auth-subtitle">Access your personalized dashboard and favorite team feed.</p>
+          <div class="form-group">
+            <label for="loginEmail">Email address</label>
+            <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" required>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            <span>Login</span>
+          </button>
+          <div id="loginMessage" class="auth-message"></div>
+        </form>
+
+        <form id="registerForm" class="auth-form auth-form--hidden" data-tab-content="register">
+          <h2>Create your account</h2>
+          <p class="auth-subtitle">Join the community and start tracking your club.</p>
+          <div class="form-group">
+            <label for="registerName">Full name</label>
+            <input id="registerName" type="text" placeholder="Alex Smith" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email address</label>
+            <input id="registerEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input id="registerPassword" type="password" placeholder="At least 8 characters" autocomplete="new-password" required>
+          </div>
+          <div class="form-group">
+            <label for="registerTeam">Choose your favorite team</label>
+            <select id="registerTeam" required>
+              <option value="">Select a team...</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            <span>Create account</span>
+          </button>
+          <div id="registerMessage" class="auth-message"></div>
+        </form>
+      </div>
+
+      <p class="auth-footer-text">
+        After logging in, you’ll choose your favorite team and be redirected to your main dashboard.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.initAuthPage) window.initAuthPage();
+    });
+  </script>
+</body>
+</html>
+

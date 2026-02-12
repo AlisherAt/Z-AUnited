@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Analytics</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics" class="active"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="page-header">
+            <h1><span class="content-icon icon-stats"></span>Analytics Dashboard</h1>
+            <p>Comprehensive statistics and performance metrics for players and teams</p>
+        </div>
+        
+        <div id="stats-hub">
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card-header" style="margin: 0; padding: var(--spacing-xl); border-bottom: 1px solid var(--border-color);">
+                    <h2 class="card-title" style="margin: 0;"><span class="content-icon icon-goal"></span>Top Scorers</h2>
+                </div>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Goals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--accent-warning);">1</strong></td>
+                            <td><strong>Erling Haaland</strong></td>
+                            <td>Manchester City</td>
+                            <td><strong style="color: var(--accent-success);">21</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>Igor Thiago</strong></td>
+                            <td>Brentford</td>
+                            <td><strong>17</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td><strong>Antoine Semenyo</strong></td>
+                            <td>Manchester City</td>
+                            <td><strong>12</strong></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Hugo Ekitiké</td>
+                            <td>Liverpool</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>João Pedro</td>
+                            <td>Chelsea</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Dominic Calvert-Lewin</td>
+                            <td>Leeds United</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Bryan Mbeumo</td>
+                            <td>Manchester United</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Bruno Guimarães</td>
+                            <td>Newcastle United</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Junior Kroupi</td>
+                            <td>Bournemouth</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Danny Welbeck</td>
+                            <td>Brighton and Hove Albion</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card-header" style="margin: 0; padding: var(--spacing-xl); border-bottom: 1px solid var(--border-color);">
+                    <h2 class="card-title" style="margin: 0;"><span class="content-icon icon-stats"></span>Top Assisters</h2>
+                </div>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Assists</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--accent-warning);">1</strong></td>
+                            <td><strong>Bruno Fernandes</strong></td>
+                            <td>Manchester United</td>
+                            <td><strong style="color: var(--accent-success);">12</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>Rayan Cherki</strong></td>
+                            <td>Manchester City</td>
+                            <td><strong>7</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td><strong>Erling Haaland</strong></td>
+                            <td>Manchester City</td>
+                            <td><strong>6</strong></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Jack Grealish</td>
+                            <td>Everton</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Granit Xhaka</td>
+                            <td>Sunderland</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Mohammed Kudus</td>
+                            <td>Tottenham Hotspur</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Morgan Rogers</td>
+                            <td>Aston Villa</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Mohamed Salah</td>
+                            <td>Liverpool</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Leandro Trossard</td>
+                            <td>Arsenal</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>El Hadji Malick Diouf</td>
+                            <td>West Ham United</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card-header" style="margin: 0; padding: var(--spacing-xl); border-bottom: 1px solid var(--border-color);">
+                    <h2 class="card-title" style="margin: 0;"><span class="content-icon icon-stats"></span>Total Passes</h2>
+                </div>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Passes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--accent-warning);">1</strong></td>
+                            <td><strong>Virgil van Dijk</strong></td>
+                            <td>Liverpool</td>
+                            <td><strong style="color: var(--accent-info);">1,948</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>Lewis Dunk</strong></td>
+                            <td>Brighton and Hove Albion</td>
+                            <td><strong>1,922</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td><strong>Trevoh Chalobah</strong></td>
+                            <td>Chelsea</td>
+                            <td><strong>1,795</strong></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Joachim Andersen</td>
+                            <td>Fulham</td>
+                            <td>1,759</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Jan Paul van Hecke</td>
+                            <td>Brighton and Hove Albion</td>
+                            <td>1,687</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Elliot Anderson</td>
+                            <td>Nottingham Forest</td>
+                            <td>1,637</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Dominik Szoboszlai</td>
+                            <td>Liverpool</td>
+                            <td>1,476</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Ezri Konsa</td>
+                            <td>Aston Villa</td>
+                            <td>1,472</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Marcos Senesi</td>
+                            <td>Bournemouth</td>
+                            <td>1,469</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Ibrahima Konaté</td>
+                            <td>Liverpool</td>
+                            <td>1,466</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card-header" style="margin: 0; padding: var(--spacing-xl); border-bottom: 1px solid var(--border-color);">
+                    <h2 class="card-title" style="margin: 0;"><span class="content-icon icon-stats"></span>Clean Sheets</h2>
+                </div>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Clean Sheets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--accent-warning);">1</strong></td>
+                            <td><strong>David Raya</strong></td>
+                            <td>Arsenal</td>
+                            <td><strong style="color: var(--accent-success);">13</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>Robert Sánchez</strong></td>
+                            <td>Chelsea</td>
+                            <td><strong>9</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>Gianluigi Donnarumma</strong></td>
+                            <td>Manchester City</td>
+                            <td><strong>9</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Dean Henderson</td>
+                            <td>Crystal Palace</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jordan Pickford</td>
+                            <td>Everton</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Robin Roefs</td>
+                            <td>Sunderland</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Nick Pope</td>
+                            <td>Newcastle United</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Guglielmo Vicario</td>
+                            <td>Tottenham Hotspur</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Djordje Petrovic</td>
+                            <td>Bournemouth</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Caoimhín Kelleher</td>
+                            <td>Brentford</td>
+                            <td>6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

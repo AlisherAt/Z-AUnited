@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Personalized Feed</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script defer src="/static/app.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed" class="active"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="page-header">
+            <h1>Your Personalized Feed</h1>
+            <p>Stay updated with the latest news, matches, and discussions from your favorite teams</p>
+        </div>
+        
+        <div id="feed">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="content-icon icon-news"></span>Latest News</h2>
+                </div>
+                <div class="card-content">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: var(--spacing-md); margin-bottom: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-primary);">
+                            <strong style="color: var(--text-primary);">Man City defeats Liverpool 2-1</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">A thrilling match with Haaland scoring the winner in the 89th minute</p>
+                        </li>
+                        <li style="padding: var(--spacing-md); margin-bottom: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-secondary);">
+                            <strong style="color: var(--text-primary);">Arsenal secures narrow win over Chelsea</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Saka's early goal proves decisive in London derby</p>
+                        </li>
+                        <li style="padding: var(--spacing-md); margin-bottom: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-warning);">
+                            <strong style="color: var(--text-primary);">Tottenham and Man United play to goalless draw</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Both teams share points in tightly contested match</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="content-icon icon-calendar"></span>Upcoming Fixtures</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Home Team</th>
+                            <th>Away Team</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Feb 15</strong></td>
+                            <td>Liverpool</td>
+                            <td>Arsenal</td>
+                            <td>15:00 GMT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feb 16</strong></td>
+                            <td>Man City</td>
+                            <td>Tottenham</td>
+                            <td>17:30 GMT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feb 17</strong></td>
+                            <td>Chelsea</td>
+                            <td>Man United</td>
+                            <td>14:00 GMT</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="content-icon icon-trending"></span>Trending Topics</h2>
+                </div>
+                <div class="card-content">
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                            <strong style="color: var(--text-primary);">Golden Boot race heats up</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Haaland and Thiago neck-and-neck in scoring charts</p>
+                        </div>
+                        <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                            <strong style="color: var(--text-primary);">Best EPL moments of the decade</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Relive the most iconic Premier League moments</p>
+                        </div>
+                        <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                            <strong style="color: var(--text-primary);">Fan predictions for the title</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Community weighs in on this season's title race</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

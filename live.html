@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Live Matches</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live" class="active"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="page-header">
+            <h1><span class="icon-live"></span>Live Match Tracker</h1>
+            <p>Follow matches in real-time with live scores, events, and commentary</p>
+        </div>
+        
+        <div id="live-matches">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="icon-live"></span>Current Matches</h2>
+                    <span class="live-badge">LIVE</span>
+                </div>
+                
+                <div class="match-card" style="margin-bottom: var(--spacing-lg);">
+                    <div class="match-header">
+                        <div class="match-teams">
+                            <div class="match-team">
+                                <div class="team-name">Manchester City</div>
+                            </div>
+                            <div class="match-score">2 - 1</div>
+                            <div class="match-team">
+                                <div class="team-name">Liverpool</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-status">
+                        <span class="live-badge">75'</span> Second Half
+                    </div>
+                </div>
+                
+                <div class="match-card" style="margin-bottom: var(--spacing-lg);">
+                    <div class="match-header">
+                        <div class="match-teams">
+                            <div class="match-team">
+                                <div class="team-name">Arsenal</div>
+                            </div>
+                            <div class="match-score">1 - 0</div>
+                            <div class="match-team">
+                                <div class="team-name">Chelsea</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-status">
+                        <span class="live-badge">60'</span> Second Half
+                    </div>
+                </div>
+                
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="match-teams">
+                            <div class="match-team">
+                                <div class="team-name">Tottenham</div>
+                            </div>
+                            <div class="match-score">0 - 0</div>
+                            <div class="match-team">
+                                <div class="team-name">Man United</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-status">
+                        Half Time
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="live-events" class="card">
+                <div class="card-header">
+                <h2 class="card-title"><span class="content-icon icon-calendar"></span>Live Events</h2>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-success);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-primary);"><span class="icon-goal" style="margin-right: 6px;"></span>GOAL!</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary);">Man City - Haaland scores (75')</p>
+                        </div>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">75'</span>
+                    </div>
+                </div>
+                <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-success);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-primary);"><span class="icon-goal" style="margin-right: 6px;"></span>GOAL!</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary);">Arsenal - Saka scores (60')</p>
+                        </div>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">60'</span>
+                    </div>
+                </div>
+                <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md); border-left: 4px solid var(--accent-warning);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-primary);">Yellow Card</strong>
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary);">Tottenham - Romero (45')</p>
+                        </div>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">45'</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

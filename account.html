@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z&A United - Account</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li><a href="/feed"><span class="nav-icon nav-icon-home"></span> <span>Feed</span></a></li>
+            <li><a href="/live"><span class="nav-icon nav-icon-live"></span> <span>Live Matches</span></a></li>
+            <li><a href="/analytics"><span class="nav-icon nav-icon-analytics"></span> <span>Analytics</span></a></li>
+            <li><a href="/community"><span class="nav-icon nav-icon-community"></span> <span>Community</span></a></li>
+            <li><a href="/league"><span class="nav-icon nav-icon-league"></span> <span>League Table</span></a></li>
+            <li><a href="/account" class="active"><span class="nav-icon nav-icon-account"></span> <span>Account</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="header-title"><img src="/static/logos/mun.png" alt="Manchester United" class="header-logo">Z&A United</div>
+        <div class="header-actions">
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar">AS</div>
+                <span>Alex Smith</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" style="margin-left: var(--spacing-md);">Logout</button>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div class="page-header">
+            <h1><span class="content-icon nav-icon-account"></span>Account Settings</h1>
+            <p>Manage your profile, preferences, and favorite team</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+            <h2 class="card-title">Profile Information</h2>
+            </div>
+            <div id="meData" style="padding: var(--spacing-lg); background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                    <div>
+                        <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--spacing-xs);">Name</div>
+                        <div id="displayName" style="color: var(--text-primary); font-size: 1.125rem; font-weight: 600;">Alex Smith</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--spacing-xs);">Email</div>
+                        <div id="displayEmail" style="color: var(--text-primary); font-size: 1.125rem; font-weight: 600;">alex.smith@email.com</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--spacing-xs);">Role</div>
+                        <div style="color: var(--text-primary); font-size: 1.125rem; font-weight: 600;">
+                            <span id="displayRole" class="badge" style="background: var(--accent-primary);">User</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: var(--spacing-xs);">Favorite Team</div>
+                        <div id="displayFavoriteTeam" style="color: var(--text-primary); font-size: 1.125rem; font-weight: 600;">Not set</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Favorite Team Selection</h2>
+            </div>
+            <div class="form-group">
+                <label for="teamSelect">Choose your favorite team to personalize your experience</label>
+                <select id="teamSelect" style="margin-bottom: var(--spacing-md);">
+                    <option value="">Loading teams...</option>
+                </select>
+                <button id="saveFavBtn" class="btn btn-primary">Save Favorite Team</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Login</h2>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" placeholder="Enter your email" value="alex.smith@email.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter your password" value="password123">
+            </div>
+            <button id="loginBtn" class="btn btn-primary">Login</button>
+            <div id="loginStatus" style="margin-top: var(--spacing-md); padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: var(--radius-md); color: var(--accent-success);">
+                ✓ Logged in as Alex Smith
+            </div>
+        </div>
+        
+        <script>window.addEventListener('DOMContentLoaded', function() { if(window.initProfilePage) window.initProfilePage(); });</script>
+    </div>
+</body>
+</html>
